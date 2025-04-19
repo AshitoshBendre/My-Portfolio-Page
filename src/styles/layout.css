@@ -1,0 +1,33 @@
+/* Layout styles */
+#root {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.app-container {
+  min-height: 100vh;
+  width: 100%;
+  background-color: var(--background);
+  overflow-x: hidden;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 300px 1fr 300px;
+  gap: 1rem;
+  height: calc(100vh - 16rem);
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  .content-grid {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  #root {
+    padding: 1rem;
+  }
+}
