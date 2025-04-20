@@ -3,11 +3,13 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import stackyLogsImage from "../assets/ProjectAssets/StackyLogs.png";
 import stackyLogsVideo from "../assets/ProjectAssets/StackyLogsTestVideo.mp4";
+import portfolioImage from "../assets/ProjectAssets/Portfolio.png";
 
 // Log imported assets
 console.log("Imported assets:", {
   stackyLogsImage,
   stackyLogsVideo,
+  portfolioImage,
 });
 
 export const projects = [
@@ -19,7 +21,7 @@ export const projects = [
     media: [
       {
         type: "image",
-        url: "/path-to-roulette-image.jpg",
+        url: portfolioImage,
         caption: "Roulette Game Interface",
       },
     ],
@@ -39,12 +41,12 @@ export const projects = [
     media: [
       {
         type: "image",
-        url: "/src/assets/ProjectAssets/StackyLogs.png",
+        url: stackyLogsImage,
         caption: "Stackylogs Interface",
       },
       {
         type: "video",
-        url: "/src/assets/ProjectAssets/StackyLogsTestVideo.mp4",
+        url: stackyLogsVideo,
         caption: "Stackylogs Test Video",
       },
     ],
