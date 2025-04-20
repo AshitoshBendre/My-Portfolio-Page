@@ -107,7 +107,7 @@ function App() {
                 </svg>
               </a>
               <a
-                href="linkedin.com/in/ashitosh-bendre-175a51247"
+                href="https://linkedin.com/in/ashitosh-bendre-175a51247"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-secondary hover:text-primary glow-effect"
