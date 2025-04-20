@@ -32,6 +32,9 @@ export default function ProjectDetail() {
     console.log("Found project:", foundProject);
     setProject(foundProject);
     setIsLoading(false);
+
+    // Scroll to top when component mounts
+    window.scrollTo(0, 0);
   }, [id]);
 
   if (isLoading) {
