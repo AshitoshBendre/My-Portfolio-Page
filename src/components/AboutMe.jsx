@@ -56,34 +56,34 @@ export default function AboutMe() {
                 Specialization
               </h3>
 
-              <p className="text-secondary/80">
+              <div className="text-secondary/80">
                 <ul className="space-y-2">
-                  <li className="flex items-center gap-4 text-secondary/80">
+                  <li className="flex items-center gap-4">
                     <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
                     Game Mechanics
                   </li>
 
-                  <li className="flex items-center gap-4 text-secondary/80">
+                  <li className="flex items-center gap-4">
                     <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
                     Reusable and modular game systems
                   </li>
 
-                  <li className="flex items-center gap-4 text-secondary/80">
+                  <li className="flex items-center gap-4">
                     <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
                     Game optimization
                   </li>
 
-                  <li className="flex items-center gap-4 text-secondary/80">
+                  <li className="flex items-center gap-4">
                     <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
                     Custom game tools
                   </li>
 
-                  <li className="flex items-center gap-4 text-secondary/80">
+                  <li className="flex items-center gap-4">
                     <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
                     Game profiling and performance tuning
                   </li>
                 </ul>
-              </p>
+              </div>
             </div>
           </div>
         </div>
@@ -254,9 +254,9 @@ export default function AboutMe() {
           I believe in creating games that not only entertain but also educate
           and inspire. My approach combines technical excellence with creative
           innovation, focusing on building experiences that are both engaging
-          and meaningful. I’m passionate about designing systems that are
+          and meaningful. I'm passionate about designing systems that are
           scalable, reusable, and optimized — especially for low-end devices,
-          making high-quality experiences more accessible. I’m also fascinated
+          making high-quality experiences more accessible. I'm also fascinated
           by procedural generation and how it enables richer and more dynamic
           gameplay. Through thoughtful system design, I aim to push boundaries
           while ensuring strong performance and modularity in every game I

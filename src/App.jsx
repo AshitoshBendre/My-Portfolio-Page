@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import WorkExperience from "./components/WorkExperience";
 import Scene from "./components/Scene";
 import Inspector from "./components/Inspector";
-import Projects from "./components/Projects";
+import Projects, { projects } from "./components/Projects";
 import ProjectDetail from "./components/ProjectDetail";
 import AboutMe from "./components/AboutMe";
 import Console from "./components/Console";
@@ -212,7 +212,7 @@ function App() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ type: "spring", damping: 25, stiffness: 120 }}
-                className="fixed inset-4 m-auto z-50 glass-panel overflow-hidden"
+                className="fixed inset-4 m-auto z-50 glass-panel overflow-hidden flex flex-col"
                 style={{ maxWidth: "90vw", maxHeight: "90vh" }}
               >
                 {/* Unity Title Bar */}
@@ -232,7 +232,7 @@ function App() {
                 </div>
 
                 {/* Main Editor Content */}
-                <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr_300px] h-[calc(100%-32px-260px)]">
+                <div className="flex-1 grid grid-cols-1 lg:grid-cols-[300px_1fr_300px] min-h-0">
                   {/* Work Experience Panel */}
                   <div className="bg-surface/20 border-r border-surface/20 overflow-y-auto">
                     <div className="p-4">
@@ -263,7 +263,7 @@ function App() {
                 </div>
 
                 {/* Bottom Panel */}
-                <div className="h-[260px] bg-surface/20 border-t border-surface/20">
+                <div className="h-[260px] bg-surface/20 border-t border-surface/20 flex flex-col">
                   {/* Tab Headers */}
                   <div className="flex border-b border-surface/20">
                     <button
@@ -289,40 +289,25 @@ function App() {
                   </div>
 
                   {/* Tab Content */}
-                  <div className="h-[calc(260px-36px)] overflow-y-auto bg-surface/10">
+                  <div className="flex-1 overflow-y-auto bg-surface/10">
                     {activeTab === "projects" ? (
-                      <div className="p-2 space-y-1">
+                      <div className="p-4 space-y-2">
                         {projects.map((project) => (
                           <div
                             key={project.id}
                             className={`flex items-center space-x-2 p-2 rounded cursor-pointer ${
                               selectedExperience?.id === project.id
                                 ? "bg-primary/20 text-primary"
-                                : "hover:bg-surface/20 text-secondary/60"
+                                : "hover:bg-surface/20"
                             }`}
                             onClick={() => setSelectedExperience(project)}
                           >
-                            <svg
-                              className="w-4 h-4"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                              />
-                            </svg>
                             <span className="text-sm">{project.title}</span>
                           </div>
                         ))}
                       </div>
                     ) : (
-                      <div className="p-4">
-                        <Console logs={logs} />
-                      </div>
+                      <Console logs={logs} />
                     )}
                   </div>
                 </div>
