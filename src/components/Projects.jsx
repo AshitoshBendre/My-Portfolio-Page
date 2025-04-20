@@ -4,7 +4,12 @@ import { useState } from "react";
 import stackyLogsImage from "../assets/ProjectAssets/StackyLogs.png";
 import stackyLogsVideo from "../assets/ProjectAssets/StackyLogsTestVideo.mp4";
 import portfolioImage from "../assets/ProjectAssets/Portfolio.png";
-
+import CSIntro from "../assets/ProjectAssets/CSIntro.png";
+import CSLable from "../assets/ProjectAssets/CSLabel.png";
+import PRWeb from "../assets/ProjectAssets/PRWebsite.png";
+import PRGame from "../assets/ProjectAssets/PRGameplay.png";
+import ARDemo from "../assets/ProjectAssets/ARDemo.mp4";
+import SEAGameplay from "../assets/ProjectAssets/SEA-Gameplay Design Doc.png";
 // Log imported assets
 console.log("Imported assets:", {
   stackyLogsImage,
@@ -14,30 +19,10 @@ console.log("Imported assets:", {
 
 export const projects = [
   {
-    id: "roulette",
-    title: "Roulette Game Prototype",
-    description:
-      "A casino-style roulette game developed in 3 days featuring realistic physics and betting system.",
-    media: [
-      {
-        type: "image",
-        url: portfolioImage,
-        caption: "Roulette Game Interface",
-      },
-    ],
-    category: "Game Development",
-    technologies: ["Unity", "C#", "Physics System"],
-    highlights: [
-      "Implemented realistic ball physics and wheel rotation",
-      "Created comprehensive betting system",
-      "Developed in a rapid 3-day prototype cycle",
-    ],
-  },
-  {
     id: "stackylogs",
     title: "Stackylogs",
     description:
-      "A custom debugger for C# programs and Unity applications with advanced profiling capabilities.",
+      "A structured debugging and logging tool for Unity/C# applications, designed for detailed profiling, future documentation, and scalable analysis.",
     media: [
       {
         type: "image",
@@ -53,12 +38,44 @@ export const projects = [
     category: "Development Tools",
     technologies: ["C#", "Avalonia UI", "Named Pipes", "Multi-threading"],
     highlights: [
-      "Built inter-process communication using named pipes",
-      "Implemented multi-threaded architecture to minimize Unity main thread overhead",
-      "Created comprehensive profiling system for performance optimization",
-      "Designed modern UI using Avalonia UI framework",
+      "Experimenting with inter-process communication using named pipes",
+      "No MonoBehaviours used outside of the Unity test client for cleaner separation",
+      "Planned tab-based console log system for structured and categorized logs",
+      "Future roadmap includes PDF export (e.g., with SharpPDF) for documentation of logs and performance reports",
+      "Intended to show time-series data (e.g., FPS in a mission) in structured graphical formats",
+      "Vision includes extending it into a documentation assistant for debugging sessions",
     ],
   },
+  {
+    id: "cell-simulation",
+    title: "Cell Simulation",
+    description:
+      "A modular, scalable educational simulation system designed for future expansion across multiple biology chapters.",
+    image: "/path-to-cell-simulation-image.jpg",
+    category: "Simulation / Education",
+    technologies: ["Unity", "C#", "WebGL", "ScriptableObjects", "Addressables"],
+    website: "https://dulcet-narwhal-2ccee3.netlify.app/",
+    media: [
+      {
+        type: "image",
+        url: CSIntro,
+        caption: "Introduction Panel of Cell Simulation",
+      },
+      {
+        type: "image",
+        url: CSLable,
+        caption: "Labels Displayed on the Cell",
+      },
+    ],
+    highlights: [
+      "Planned and implemented modular architecture for reusability in future chapters",
+      "Used ScriptableObjects for data-driven label interactions and 3D object info",
+      "Implemented drag-and-drop labeling, 3D viewing, and interactive info panels",
+      "Optimized for WebGL deployment and efficient loading using Addressables",
+      "🎮 [Live Demo](https://dulcet-narwhal-2ccee3.netlify.app/) available online",
+    ],
+  },
+
   {
     id: "pocket-rocket",
     title: "Pocket Rocket",
@@ -67,19 +84,38 @@ export const projects = [
     image: "/path-to-pocket-rocket-image.jpg",
     category: "Web Game",
     technologies: ["WebGL", "JavaScript", "Physics Engine", "Design Patterns"],
+
+    media: [
+      {
+        type: "image",
+        url: PRWeb,
+        caption: "Website for Pocket Rocket",
+      },
+      {
+        type: "image",
+        url: PRGame,
+        caption: "Playable demo inside the website",
+      },
+    ],
     highlights: [
       "Implemented rigid body physics system",
-      "Used observer pattern for game state management",
+      "Completed Within 2 Days",
       "Planning implementation of 2D soft body physics",
-      "Incorporating procedural content generation",
     ],
+    website: "https://bitsizestudios.netlify.app/",
   },
   {
     id: "sanskrit-games",
     title: "Sanskrit Educational Games",
     description:
       "Educational games designed to make learning Sanskrit engaging and interactive.",
-    image: "/path-to-sanskrit-games-image.jpg",
+    media: [
+      {
+        type: "image",
+        url: SEAGameplay,
+        caption: "Game Design Doc",
+      },
+    ],
     category: "Educational Games",
     technologies: ["Unity", "C#", "Educational Design"],
     highlights: [
@@ -87,48 +123,30 @@ export const projects = [
       "Creating a bridge challenge game inspired by Squid Game",
       "Focusing on educational value while maintaining engagement",
     ],
+    website:
+      "https://skillful-reply-7f8.notion.site/Sanskrit-Concept-Documentation-1ac5f47969a5803bb8b0cb62e13eaee7?pvs=4",
   },
   {
-    id: "ar-interior",
+    id: "Architection AR app",
     title: "AR Interior Design App",
     description:
       "An augmented reality application for interior design visualization.",
     image: "/path-to-ar-interior-image.jpg",
     category: "AR Development",
+    media: [
+      {
+        type: "video",
+        url: ARDemo,
+        caption:
+          "Video of a older build of ARChitection application to test real life scales currently (150 cms test)",
+      },
+    ],
     technologies: ["Unity", "AR Foundation", "Vuforia", "JSON"],
     highlights: [
       "Implemented AR visualization using AR Foundation & Vuforia",
       "Created JSON-based object saving system",
       "Prototyped for Xreal AR Glasses & Meta Quest 3",
       "Developed intuitive UI for object placement and manipulation",
-    ],
-  },
-  {
-    id: "cell-simulation",
-    title: "Cell Simulation",
-    description: "A modular, WebGL-compatible cell simulation system.",
-    image: "/path-to-cell-simulation-image.jpg",
-    category: "Simulation",
-    technologies: ["Unity", "C#", "WebGL", "ScriptableObjects"],
-    highlights: [
-      "Designed modular system using ScriptableObjects",
-      "Ensured WebGL compatibility",
-      "Created extensible simulation framework",
-      "Implemented efficient cell behavior patterns",
-    ],
-  },
-  {
-    id: "quiz-game",
-    title: "Dynamic Quiz Game",
-    description: "A scalable quiz game system with dynamic content management.",
-    image: "/path-to-quiz-game-image.jpg",
-    category: "Game Development",
-    technologies: ["Unity", "C#", "ScriptableObjects"],
-    highlights: [
-      "Designed dynamic quiz system using ScriptableObjects",
-      "Implemented scalable content management",
-      "Created reusable question templates",
-      "Built flexible scoring system",
     ],
   },
   {
@@ -144,6 +162,40 @@ export const projects = [
       "Created AI opponents using NavMesh Agents",
       "Developed turn-based game mechanics",
       "Built synchronized game state management",
+    ],
+  },
+  {
+    id: "telly-erp",
+    title: "TellyERP - Betting Management System",
+    description:
+      "A Unity-based application designed to manage match-based betting transactions, inspired by Tally ERP systems.",
+    image: "/path-to-telly-erp-image.jpg",
+    category: "Business Application / Betting",
+    technologies: ["Unity", "C#", "Firebase", "Realtime Database", "Canvas UI"],
+    website: "", // Optional: add Netlify/WebGL/PlayStore link here if available
+    highlights: [
+      "Implemented match betting calculation logic with real-time data sync using Firebase",
+      "Integrated CRUD operations for dynamic data management",
+      "Designed responsive UI and optimized Unity Canvas for better performance",
+      "Debugged and enhanced UI responsiveness across multiple screen sizes",
+      "Organized the project into modular components for scalable business use",
+    ],
+  },
+  {
+    id: "nms-software",
+    title: "NMS Software - Roulette Betting Manager",
+    description:
+      "A Unity Build Application to manage and distribute betting transactions in roulette-based casino games similar to TellyERP",
+    image: "/path-to-nms-software-image.jpg",
+    category: "Business Application / Casino",
+    technologies: ["Unity", "C#", "OOP", "UI Systems"],
+    website: "", // Optional: add deployment link or company reference
+    highlights: [
+      "Implemented transaction distribution logic specific to roulette betting flow",
+      "Refactored and cleaned legacy code for improved maintainability",
+      "Fixed key issues in logic processing and enhanced error handling",
+      "Restructured project folders, naming conventions, and prefabs for better scalability",
+      "Supported business logic workflows in sync with game economy systems",
     ],
   },
 ];
@@ -283,6 +335,32 @@ export default function Projects() {
                       </span>
                     ))}
                   </motion.div>
+
+                  {project.website && (
+                    <motion.div layout className="mt-4">
+                      <a
+                        href={project.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary hover:text-[#0078d7] text-sm font-medium flex items-center gap-1"
+                      >
+                        <span>Visit Website</span>
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                          />
+                        </svg>
+                      </a>
+                    </motion.div>
+                  )}
                 </div>
 
                 <motion.div

@@ -127,9 +127,34 @@ export default function ProjectDetail() {
               <h1 className="text-4xl font-bold text-primary mb-4">
                 {project.title}
               </h1>
-              <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">
-                {project.category}
-              </span>
+              <div className="flex flex-wrap items-center gap-4 mb-4">
+                <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">
+                  {project.category}
+                </span>
+                {project.website && (
+                  <a
+                    href={project.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center px-4 py-1 bg-primary text-white text-sm rounded-full hover:bg-[#0078d7] transition-colors"
+                  >
+                    <span>View Live</span>
+                    <svg
+                      className="w-4 h-4 ml-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                      />
+                    </svg>
+                  </a>
+                )}
+              </div>
             </motion.div>
 
             <motion.div
