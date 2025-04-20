@@ -14,7 +14,11 @@ export default function AboutMe() {
           development. My journey in game development started with a deep
           interest in creating immersive experiences and has evolved into a
           professional career where I combine technical expertise with creative
-          problem-solving.
+          problem-solving. I'm especially interested in designing reusable
+          systems, optimizing games for low-end devices, and exploring
+          procedural generation techniques. I love creating scalable solutions
+          that can be used across different projects to speed up development
+          while maintaining performance and quality.
         </p>
       </motion.div>
 
@@ -40,8 +44,8 @@ export default function AboutMe() {
             <div>
               <h3 className="text-lg font-medium text-primary">Experience</h3>
               <p className="text-secondary/80">
-                Over 3 years of experience in game development, specializing in
-                Unity, WebGL, and AR technologies
+                Over 1.5+ years of experience in game development, specializing
+                in Unity, WebGL, and AR technologies
               </p>
             </div>
           </div>
@@ -51,9 +55,34 @@ export default function AboutMe() {
               <h3 className="text-lg font-medium text-primary">
                 Specialization
               </h3>
+
               <p className="text-secondary/80">
-                Game mechanics, physics systems, multiplayer networking, and
-                educational game development
+                <ul className="space-y-2">
+                  <li className="flex items-center gap-4 text-secondary/80">
+                    <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+                    Game Mechanics
+                  </li>
+
+                  <li className="flex items-center gap-4 text-secondary/80">
+                    <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+                    Reusable and modular game systems
+                  </li>
+
+                  <li className="flex items-center gap-4 text-secondary/80">
+                    <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+                    Game optimization
+                  </li>
+
+                  <li className="flex items-center gap-4 text-secondary/80">
+                    <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+                    Custom game tools
+                  </li>
+
+                  <li className="flex items-center gap-4 text-secondary/80">
+                    <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+                    Game profiling and performance tuning
+                  </li>
+                </ul>
               </p>
             </div>
           </div>
@@ -121,6 +150,38 @@ export default function AboutMe() {
                 </svg>
                 AR/VR Development
               </li>
+              <li className="flex items-center gap-2 text-secondary/80">
+                <svg
+                  className="w-4 h-4 text-primary"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+                Modular System Architecture
+              </li>
+              <li className="flex items-center gap-2 text-secondary/80">
+                <svg
+                  className="w-4 h-4 text-primary"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+                Procedural Generation (exploring and learning)
+              </li>
             </ul>
           </div>
           <div className="space-y-2">
@@ -142,7 +203,8 @@ export default function AboutMe() {
                     d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                   />
                 </svg>
-                Educational Game Design
+                Decoding games to learn their underlying systems and design
+                choices
               </li>
               <li className="flex items-center gap-2 text-secondary/80">
                 <svg
@@ -158,7 +220,7 @@ export default function AboutMe() {
                     d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                   />
                 </svg>
-                Physics Simulation
+                Playing games to study mechanics and player experience
               </li>
               <li className="flex items-center gap-2 text-secondary/80">
                 <svg
@@ -174,7 +236,7 @@ export default function AboutMe() {
                     d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                   />
                 </svg>
-                Game Design Patterns
+                Art and Game Designing as creative outlets
               </li>
             </ul>
           </div>
@@ -192,8 +254,13 @@ export default function AboutMe() {
           I believe in creating games that not only entertain but also educate
           and inspire. My approach combines technical excellence with creative
           innovation, focusing on building experiences that are both engaging
-          and meaningful. I'm particularly interested in how games can be used
-          as educational tools and how they can create positive social impact.
+          and meaningful. I’m passionate about designing systems that are
+          scalable, reusable, and optimized — especially for low-end devices,
+          making high-quality experiences more accessible. I’m also fascinated
+          by procedural generation and how it enables richer and more dynamic
+          gameplay. Through thoughtful system design, I aim to push boundaries
+          while ensuring strong performance and modularity in every game I
+          build.
         </p>
       </motion.div>
     </div>

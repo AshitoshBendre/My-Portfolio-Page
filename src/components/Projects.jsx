@@ -1,6 +1,14 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import stackyLogsImage from "../assets/ProjectAssets/StackyLogs.png";
+import stackyLogsVideo from "../assets/ProjectAssets/StackyLogsTestVideo.mp4";
+
+// Log imported assets
+console.log("Imported assets:", {
+  stackyLogsImage,
+  stackyLogsVideo,
+});
 
 export const projects = [
   {
@@ -8,7 +16,13 @@ export const projects = [
     title: "Roulette Game Prototype",
     description:
       "A casino-style roulette game developed in 3 days featuring realistic physics and betting system.",
-    image: "/path-to-roulette-image.jpg",
+    media: [
+      {
+        type: "image",
+        url: "/path-to-roulette-image.jpg",
+        caption: "Roulette Game Interface",
+      },
+    ],
     category: "Game Development",
     technologies: ["Unity", "C#", "Physics System"],
     highlights: [
@@ -22,7 +36,18 @@ export const projects = [
     title: "Stackylogs",
     description:
       "A custom debugger for C# programs and Unity applications with advanced profiling capabilities.",
-    image: "/path-to-stackylogs-image.jpg",
+    media: [
+      {
+        type: "image",
+        url: "/src/assets/ProjectAssets/StackyLogs.png",
+        caption: "Stackylogs Interface",
+      },
+      {
+        type: "video",
+        url: "/src/assets/ProjectAssets/StackyLogsTestVideo.mp4",
+        caption: "Stackylogs Test Video",
+      },
+    ],
     category: "Development Tools",
     technologies: ["C#", "Avalonia UI", "Named Pipes", "Multi-threading"],
     highlights: [
@@ -202,12 +227,23 @@ export default function Projects() {
             >
               <Link to={`/projects/${project.id}`} className="space-y-4 block">
                 <div className="aspect-video bg-surface/40 rounded-lg overflow-hidden group-hover:shadow-lg transition-shadow">
-                  {project.image ? (
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover transform transition-transform group-hover:scale-105"
-                    />
+                  {project.media && project.media.length > 0 ? (
+                    project.media[0].type === "video" ? (
+                      <video
+                        src={project.media[0].url}
+                        className="w-full h-full object-cover transform transition-transform group-hover:scale-105"
+                        muted
+                        loop
+                        autoPlay
+                        playsInline
+                      />
+                    ) : (
+                      <img
+                        src={project.media[0].url}
+                        alt={project.media[0].caption}
+                        className="w-full h-full object-cover transform transition-transform group-hover:scale-105"
+                      />
+                    )
                   ) : (
                     <div className="w-full h-full flex items-center justify-center text-primary/60">
                       Project Preview

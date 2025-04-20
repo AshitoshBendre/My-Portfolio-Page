@@ -2,15 +2,34 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { projects } from "./Projects";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import "./ProjectDetail.css";
 
 export default function ProjectDetail() {
   const { id } = useParams();
   const [project, setProject] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  const sliderSettings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: false,
+    pauseOnHover: true,
+    adaptiveHeight: false,
+    beforeChange: (current, next) => setActiveSlide(next),
+    arrows: true,
+  };
 
   useEffect(() => {
     setIsLoading(true);
     const foundProject = projects.find((p) => p.id === id);
+    console.log("Found project:", foundProject);
     setProject(foundProject);
     setIsLoading(false);
   }, [id]);
@@ -30,6 +49,7 @@ export default function ProjectDetail() {
   }
 
   if (!project) {
+    console.log("Project not found for id:", id);
     return (
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -59,6 +79,9 @@ export default function ProjectDetail() {
       </motion.div>
     );
   }
+
+  console.log("Rendering project:", project);
+  console.log("Media:", project.media);
 
   return (
     <AnimatePresence mode="wait">
@@ -113,17 +136,40 @@ export default function ProjectDetail() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.3 }}
-              className="aspect-video bg-surface/40 rounded-xl overflow-hidden shadow-lg"
+              className="media-container"
             >
-              {project.image ? (
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover"
-                />
+              {project.media && project.media.length > 0 ? (
+                <Slider {...sliderSettings}>
+                  {project.media.map((item, index) => (
+                    <div key={index} className="slide-item">
+                      {item.type === "video" ? (
+                        <div className="media-wrapper">
+                          <video
+                            key={item.url}
+                            src={item.url}
+                            controls
+                            playsInline
+                            autoPlay={activeSlide === index}
+                            muted={activeSlide !== index}
+                          />
+                          {item.caption && (
+                            <div className="media-caption">{item.caption}</div>
+                          )}
+                        </div>
+                      ) : (
+                        <div className="media-wrapper">
+                          <img src={item.url} alt={item.caption} />
+                          {item.caption && (
+                            <div className="media-caption">{item.caption}</div>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </Slider>
               ) : (
-                <div className="w-full h-full flex items-center justify-center text-primary/60">
-                  Project Preview
+                <div className="w-full aspect-video bg-surface/20 rounded-lg flex items-center justify-center text-primary/60">
+                  No media available
                 </div>
               )}
             </motion.div>

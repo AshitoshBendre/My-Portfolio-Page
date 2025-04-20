@@ -8,7 +8,6 @@ import Projects from "./components/Projects";
 import ProjectDetail from "./components/ProjectDetail";
 import AboutMe from "./components/AboutMe";
 import Console from "./components/Console";
-import { projects } from "./components/Projects";
 
 function App() {
   const [selectedExperience, setSelectedExperience] = useState(null);
