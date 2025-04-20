@@ -131,7 +131,6 @@ export const projects = [
     title: "AR Interior Design App",
     description:
       "An augmented reality application for interior design visualization.",
-    image: "/path-to-ar-interior-image.jpg",
     category: "AR Development",
     media: [
       {

@@ -16,6 +16,7 @@
   width: 100%;
   aspect-ratio: 16/9;
   max-height: 60vh;
+  display: block !important;
 }
 
 .media-wrapper {
@@ -34,6 +35,7 @@
   height: 100%;
   object-fit: contain;
   max-height: 60vh;
+  display: block;
 }
 
 .media-caption {
@@ -61,6 +63,11 @@
 
 .slick-slide {
   position: relative;
+  visibility: hidden;
+}
+
+.slick-slide.slick-active {
+  visibility: visible;
 }
 
 .slick-slide > div {

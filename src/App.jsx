@@ -87,7 +87,9 @@ function App() {
                 Projects
               </Link>
               <a
-                href="mailto:ashitoshbendre.work@gmail.com"
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=ashitoshbendre.work@gmail.com&su=Portfolio%20Inquiry&body=Hello%20Ashitosh,"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-secondary hover:text-primary glow-effect"
               >
                 <svg
@@ -105,7 +107,7 @@ function App() {
                 </svg>
               </a>
               <a
-                href="https://linkedin.com/in/your-linkedin"
+                href="linkedin.com/in/ashitosh-bendre-175a51247"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-secondary hover:text-primary glow-effect"
@@ -119,7 +121,7 @@ function App() {
                 </svg>
               </a>
               <a
-                href="https://github.com/your-github"
+                href="https://github.com/AshitoshBendre"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-secondary hover:text-primary glow-effect"

@@ -21,9 +21,11 @@ export default function ProjectDetail() {
     slidesToScroll: 1,
     autoplay: false,
     pauseOnHover: true,
-    adaptiveHeight: false,
+    adaptiveHeight: true,
     beforeChange: (current, next) => setActiveSlide(next),
     arrows: true,
+    key: project?.id,
+    fade: true,
   };
 
   useEffect(() => {
@@ -167,34 +169,49 @@ export default function ProjectDetail() {
               className="media-container"
             >
               {project.media && project.media.length > 0 ? (
-                <Slider {...sliderSettings}>
-                  {project.media.map((item, index) => (
-                    <div key={index} className="slide-item">
-                      {item.type === "video" ? (
-                        <div className="media-wrapper">
-                          <video
-                            key={item.url}
-                            src={item.url}
-                            controls
-                            playsInline
-                            autoPlay={activeSlide === index}
-                            muted={activeSlide !== index}
-                          />
-                          {item.caption && (
-                            <div className="media-caption">{item.caption}</div>
-                          )}
-                        </div>
-                      ) : (
-                        <div className="media-wrapper">
-                          <img src={item.url} alt={item.caption} />
-                          {item.caption && (
-                            <div className="media-caption">{item.caption}</div>
-                          )}
-                        </div>
-                      )}
-                    </div>
-                  ))}
-                </Slider>
+                <div className="slider-wrapper">
+                  <Slider {...sliderSettings}>
+                    {project.media.map((item, index) => (
+                      <div
+                        key={`${project.id}-${index}`}
+                        className="slide-item"
+                      >
+                        {item.type === "video" ? (
+                          <div className="media-wrapper">
+                            <video
+                              key={`${project.id}-video-${index}`}
+                              src={item.url}
+                              controls
+                              playsInline
+                              autoPlay={activeSlide === index}
+                              muted={activeSlide !== index}
+                              preload="metadata"
+                            />
+                            {item.caption && (
+                              <div className="media-caption">
+                                {item.caption}
+                              </div>
+                            )}
+                          </div>
+                        ) : (
+                          <div className="media-wrapper">
+                            <img
+                              key={`${project.id}-image-${index}`}
+                              src={item.url}
+                              alt={item.caption}
+                              loading="lazy"
+                            />
+                            {item.caption && (
+                              <div className="media-caption">
+                                {item.caption}
+                              </div>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </Slider>
+                </div>
               ) : (
                 <div className="w-full aspect-video bg-surface/20 rounded-lg flex items-center justify-center text-primary/60">
                   No media available
