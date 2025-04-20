@@ -11,4 +11,17 @@ export default defineConfig({
       plugins: [tailwindcss, autoprefixer],
     },
   },
+  assetsInclude: ["**/*.pdf"],
+  build: {
+    rollupOptions: {
+      output: {
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name.endsWith(".pdf")) {
+            return "assets/[name][extname]";
+          }
+          return "assets/[name]-[hash][extname]";
+        },
+      },
+    },
+  },
 });

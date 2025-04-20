@@ -8,6 +8,7 @@ import Projects, { projects } from "./components/Projects";
 import ProjectDetail from "./components/ProjectDetail";
 import AboutMe from "./components/AboutMe";
 import Console from "./components/Console";
+import resumePDF from "./assets/ProjectAssets/Ashitosh_Bendre_Resume.pdf";
 
 function App() {
   const [selectedExperience, setSelectedExperience] = useState(null);
@@ -86,6 +87,26 @@ function App() {
               >
                 Projects
               </Link>
+              <a
+                href={resumePDF}
+                download="Ashitosh_Bendre_Resume.pdf"
+                className="text-secondary hover:text-primary glow-effect inline-flex items-center gap-1"
+              >
+                <span>Resume</span>
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                  />
+                </svg>
+              </a>
               <a
                 href="https://mail.google.com/mail/?view=cm&fs=1&to=ashitoshbendre.work@gmail.com&su=Portfolio%20Inquiry&body=Hello%20Ashitosh,"
                 target="_blank"
