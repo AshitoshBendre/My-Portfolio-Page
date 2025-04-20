@@ -187,7 +187,7 @@ export const projects = [
     description:
       "A Unity Build Application to manage and distribute betting transactions in roulette-based casino games similar to TellyERP",
     image: "/path-to-nms-software-image.jpg",
-    category: "Business Application / Casino",
+    category: "Business Application / Betting",
     technologies: ["Unity", "C#", "OOP", "UI Systems"],
     website: "", // Optional: add deployment link or company reference
     highlights: [
