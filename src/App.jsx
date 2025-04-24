@@ -12,13 +12,12 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import resumePDF from "./assets/ProjectAssets/Ashitosh_Bendre_Resume.pdf";
 
 // Import Vercel Analytics
-import { inject } from "@vercel/analytics";
-import { SpeedInsights } from "@vercel/speed-insights/react";
-
-// Initialize analytics
-inject();
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 function App() {
+  <Analytics />;
+  <SpeedInsights />;
   const [selectedExperience, setSelectedExperience] = useState(null);
   const [showUnityPanel, setShowUnityPanel] = useState(false);
   const [activeTab, setActiveTab] = useState("projects");
