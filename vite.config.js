@@ -29,4 +29,7 @@ export default defineConfig({
     outDir: "dist",
     emptyOutDir: true,
   },
+  optimizeDeps: {
+    include: ["@vercel/analytics", "@vercel/speed-insights"],
+  },
 });
