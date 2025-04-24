@@ -12,12 +12,8 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import resumePDF from "./assets/ProjectAssets/Ashitosh_Bendre_Resume.pdf";
 
 // Import Vercel Analytics
-import { inject as injectAnalytics } from "@vercel/analytics";
-import { inject as injectSpeedInsights } from "@vercel/speed-insights";
-
-// Initialize analytics
-injectAnalytics();
-injectSpeedInsights();
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 function App() {
   const [selectedExperience, setSelectedExperience] = useState(null);
@@ -348,6 +344,8 @@ function App() {
               </>
             )}
           </AnimatePresence>
+          <Analytics />
+          <SpeedInsights />
         </div>
       </Router>
     </ErrorBoundary>
