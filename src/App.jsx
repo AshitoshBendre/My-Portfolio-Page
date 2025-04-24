@@ -13,11 +13,9 @@ import resumePDF from "./assets/ProjectAssets/Ashitosh_Bendre_Resume.pdf";
 
 // Import Vercel Analytics
 import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 function App() {
-  <Analytics />;
-  <SpeedInsights />;
   const [selectedExperience, setSelectedExperience] = useState(null);
   const [showUnityPanel, setShowUnityPanel] = useState(false);
   const [activeTab, setActiveTab] = useState("projects");
@@ -346,6 +344,7 @@ function App() {
               </>
             )}
           </AnimatePresence>
+          <Analytics />
           <SpeedInsights />
         </div>
       </Router>
