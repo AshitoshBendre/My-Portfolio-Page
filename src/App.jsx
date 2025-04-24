@@ -12,11 +12,10 @@ import resumePDF from "./assets/ProjectAssets/Ashitosh_Bendre_Resume.pdf";
 
 // Import Vercel Analytics
 import { inject } from "@vercel/analytics";
-import { inject as injectSpeedInsights } from "@vercel/speed-insights";
+import { SpeedInsights } from "@vercel/speed-insights";
 
 // Initialize analytics
 inject();
-injectSpeedInsights();
 
 function App() {
   const [selectedExperience, setSelectedExperience] = useState(null);
@@ -346,6 +345,7 @@ function App() {
             </>
           )}
         </AnimatePresence>
+        <SpeedInsights />
       </div>
     </Router>
   );
