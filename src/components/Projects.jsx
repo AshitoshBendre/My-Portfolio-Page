@@ -10,6 +10,8 @@ import PRWeb from "../assets/ProjectAssets/PRWebsite.png";
 import PRGame from "../assets/ProjectAssets/PRGameplay.png";
 import ARDemo from "../assets/ProjectAssets/ARDemo.mp4";
 import SEAGameplay from "../assets/ProjectAssets/SEA-Gameplay Design Doc.png";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 // Log imported assets
 console.log("Imported assets:", {
   stackyLogsImage,
