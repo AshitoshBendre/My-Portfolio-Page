@@ -15,7 +15,6 @@ export default defineConfig({
   assetsInclude: ["**/*.pdf"],
   build: {
     rollupOptions: {
-      external: ["@vercel/analytics/react", "@vercel/speed-insights/react"],
       output: {
         assetFileNames: (assetInfo) => {
           if (assetInfo.name.endsWith(".pdf")) {

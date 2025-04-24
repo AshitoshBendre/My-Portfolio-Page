@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/react";
 import WorkExperience from "./components/WorkExperience";
 import Scene from "./components/Scene";
 import Inspector from "./components/Inspector";
@@ -11,6 +9,14 @@ import ProjectDetail from "./components/ProjectDetail";
 import AboutMe from "./components/AboutMe";
 import Console from "./components/Console";
 import resumePDF from "./assets/ProjectAssets/Ashitosh_Bendre_Resume.pdf";
+
+// Import Vercel Analytics
+import { inject } from "@vercel/analytics";
+import { inject as injectSpeedInsights } from "@vercel/speed-insights";
+
+// Initialize analytics
+inject();
+injectSpeedInsights();
 
 function App() {
   const [selectedExperience, setSelectedExperience] = useState(null);
@@ -73,8 +79,6 @@ function App() {
   return (
     <Router>
       <div className="min-h-screen bg-background flex flex-col">
-        <Analytics />
-        <SpeedInsights />
         {/* Navbar */}
         <header className="m-3 fixed top-0 left-1/2 transform -translate-x-1/2 z-50 glass-panel rounded-full border border-white/20 px-4 py-2">
           <div className="container mx-auto px-4 py-4 flex justify-between items-center">
@@ -343,8 +347,6 @@ function App() {
           )}
         </AnimatePresence>
       </div>
-      <Analytics />
-      <SpeedInsights />
     </Router>
   );
 }
