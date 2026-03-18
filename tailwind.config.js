@@ -1,42 +1,35 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+const config = {
+  darkMode: "class",
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       colors: {
-        primary: "#a5b4fc", // Soft lavender (like VS Code purple)
-        secondary: "#cbd5e1", // Pastel gray (like code comments)
-        background: "#000000", // Pure black (like terminal)
-        surface: "#0a0a0a", // Slightly lighter black
-        accent: "#93c5fd", // Light sky blue (like syntax highlighting)
-        "surface-hover": "#1a1a1a", // Dark gray for hover states
-        "text-primary": "#f8fafc", // Soft white (like code text)
-        "text-secondary": "#cbd5e1", // Light gray (like muted text)
-
-        // Pastel syntax highlighting colors
-        "code-string": "#fecaca", // Soft pink (for strings)
-        "code-keyword": "#bfdbfe", // Soft blue (for keywords)
-        "code-function": "#bbf7d0", // Soft green (for functions)
-        "code-variable": "#e9d5ff", // Soft purple (for variables)
-        "code-comment": "#94a3b8", // Muted blue (for comments)
-        "code-number": "#fef08a", // Soft yellow (for numbers)
-
-        // Terminal-inspired accents
-        "terminal-green": "#86efac", // Soft green (like successful commands)
-        "terminal-red": "#fca5a5", // Soft red (like errors)
-        "terminal-yellow": "#fef08a", // Soft yellow (like warnings)
+        primary: "#e60012",
+        secondary: "#FFD700",
+        "accent-blue": "#3B82F6",
+        "background-grid": "#F5F5F5",
       },
       fontFamily: {
-        sans: ["Inter", "system-ui", "-apple-system", "sans-serif"],
-        mono: ["Fira Code", "monospace"],
+        display: ["Space Grotesk", "sans-serif"],
+        retro: ["'Press Start 2P'", "cursive"],
+        "mono-one": ["'Rubik Mono One'", "sans-serif"],
       },
       boxShadow: {
-        card: "0 1px 3px 0 rgb(0 0 0 / 0.3), 0 1px 2px -1px rgb(0 0 0 / 0.3)",
-        panel:
-          "0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3)",
-        glow: "0 0 15px rgba(165, 180, 252, 0.3)", // Soft purple glow
+        neo: "6px 6px 0px 0px #000000",
+        "neo-lg": "12px 12px 0px 0px #000000",
+        "neo-red": "6px 6px 0px 0px #e60012",
+        "neo-blue": "12px 12px 0px 0px #3B82F6",
+        "neo-yellow": "12px 12px 0px 0px #FFD700",
+        "mini-neo": "2px 2px 0px 0px #000000",
+      },
+      borderRadius: {
+        none: "0px",
+        DEFAULT: "0px",
       },
     },
   },
   plugins: [],
 };
+
+export default config;

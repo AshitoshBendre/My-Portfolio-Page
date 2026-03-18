@@ -6,7 +6,7 @@ class ErrorBoundary extends React.Component {
     this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError(error) {
+  static getDerivedStateFromError() {
     return { hasError: true };
   }
 
@@ -17,13 +17,15 @@ class ErrorBoundary extends React.Component {
   render() {
     if (this.state.hasError) {
       return (
-        <div className="min-h-screen bg-background flex items-center justify-center">
-          <div className="text-center space-y-4">
-            <h1 className="text-2xl text-primary">Something went wrong</h1>
-            <p className="text-secondary/80">Please try refreshing the page</p>
+        <div className="pixel-grid flex min-h-screen items-center justify-center px-6">
+          <div className="retro-border-8 bg-white p-10 text-center shadow-neo-lg">
+            <h1 className="text-3xl uppercase text-primary">System Error</h1>
+            <p className="mt-4 font-bold text-slate-700">
+              Something went wrong. Refresh to reload the portfolio.
+            </p>
             <button
               onClick={() => window.location.reload()}
-              className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-[#0078d7] transition-colors"
+              className="hover-bounce retro-border-4 mt-6 bg-primary px-6 py-3 font-black uppercase text-white shadow-neo transition-all"
             >
               Refresh Page
             </button>
