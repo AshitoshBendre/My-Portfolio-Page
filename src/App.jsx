@@ -15,6 +15,7 @@ import ProjectDetail from "./components/ProjectDetail";
 import Projects from "./components/Projects";
 import resumePDF from "./assets/ProjectAssets/Ashitosh_Bendre_Resume.pdf";
 import { profile } from "./data/portfolioData";
+import { getPageTitle, scrollToSection } from "./utils/portfolioHelpers";
 
 const navLinks = [
   { label: "START", sectionId: "about" },
@@ -22,14 +23,6 @@ const navLinks = [
   { label: "ABILITIES", sectionId: "abilities" },
   { label: "SAVE", sectionId: "contact" },
 ];
-
-function scrollToSection(sectionId) {
-  const element = document.getElementById(sectionId);
-
-  if (element) {
-    element.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-}
 
 function NavSectionLink({ sectionId, label, onNavigate }) {
   const navigate = useNavigate();
@@ -61,16 +54,7 @@ function RouteEffects() {
   const location = useLocation();
 
   useEffect(() => {
-    const titles = {
-      "/": "Ashitosh Bendre | Home",
-      "/projects": "Ashitosh Bendre | All Quests",
-    };
-
-    if (location.pathname.startsWith("/projects/")) {
-      document.title = "Ashitosh Bendre | Quest Log";
-    } else {
-      document.title = titles[location.pathname] || "Ashitosh Bendre";
-    }
+    document.title = getPageTitle(location.pathname);
 
     if (location.pathname === "/" && location.state?.scrollTo) {
       const timeout = window.setTimeout(() => {

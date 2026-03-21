@@ -1,163 +1,21 @@
 import { Link } from "react-router-dom";
+import { journey, profile, skills } from "../data/portfolioData";
+import ProjectCard from "./projects/ProjectCard";
+import SectionTitle from "./ui/SectionTitle";
 import {
-  featuredProjectIds,
-  journey,
-  profile,
-  projects,
-  skills,
-} from "../data/portfolioData";
+  buildGmailComposeLink,
+  getFeaturedProjects,
+  scrollToSection,
+} from "../utils/portfolioHelpers";
 
-const featuredProjects = featuredProjectIds
-  .map((id) => projects.find((project) => project.id === id))
-  .filter(Boolean);
-
-function SectionTitle({
-  title,
-  subtitle,
-  centered = false,
-  titleClassName = "",
-  subtitleClassName = "",
-}) {
-  return (
-    <div className={centered ? "text-center" : ""}>
-      <h2
-        className={`text-3xl uppercase tracking-tight md:text-5xl ${titleClassName}`}
-      >
-        {title}
-      </h2>
-      {subtitle ? (
-        <p
-          className={`mt-3 font-retro text-[11px] uppercase tracking-[0.2em] text-primary ${subtitleClassName}`}
-        >
-          {subtitle}
-        </p>
-      ) : null}
-    </div>
-  );
-}
-
-function QuestCard({ project }) {
-  const preview = project.media?.[0];
-  const accentClass =
-    project.difficulty === "BOSS"
-      ? "bg-green-500"
-      : project.difficulty === "LEGEND"
-        ? "bg-secondary text-black"
-        : project.difficulty === "ELITE"
-          ? "bg-accent-blue text-white"
-          : "bg-primary text-white";
-
-  return (
-    <article className="card-glow group overflow-hidden bg-white shadow-neo-lg">
-      <div className="retro-border-8 h-full">
-        <div className="relative h-64 overflow-hidden border-b-8 border-black bg-slate-100">
-          <div
-            className={`absolute right-4 top-4 z-10 px-3 py-1 font-retro text-[11px] uppercase ${accentClass} retro-border-4`}
-          >
-            {project.difficulty}
-          </div>
-          {preview ? (
-            preview.type === "video" ? (
-              <video
-                src={preview.url}
-                className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
-                autoPlay
-                muted
-                loop
-                playsInline
-              />
-            ) : (
-              <img
-                src={preview.url}
-                alt={preview.caption || project.title}
-                className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
-              />
-            )
-          ) : (
-            <div className="flex h-full items-center justify-center bg-primary/10 font-retro text-base">
-              NO_PREVIEW
-            </div>
-          )}
-        </div>
-        <div className="space-y-5 p-7">
-          <div>
-            <h3 className="text-2xl uppercase">{project.questTitle}</h3>
-            <p className="mt-3 min-h-[3rem] text-base font-bold leading-relaxed text-slate-700">
-              {project.summary}
-            </p>
-          </div>
-          <div className="space-y-4">
-            <div className="flex items-center gap-2">
-              <span className="font-retro text-[11px] uppercase">XP:</span>
-              <div className="retro-border-4 h-3 flex-1 overflow-hidden bg-gray-200">
-                <div
-                  className="h-full bg-primary"
-                  style={{ width: `${project.difficultyPercent}%` }}
-                />
-              </div>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {project.technologies.slice(0, 3).map((tech) => (
-                <span
-                  key={tech}
-                  className="bg-black px-2 py-1 text-sm font-black uppercase text-white"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
-          <div className="flex flex-wrap gap-4">
-            <Link
-              to={`/projects/${project.id}`}
-              state={{ from: "home-projects" }}
-              className="hover-bounce retro-border-4 bg-primary px-5 py-3 text-sm font-black text-white shadow-neo transition-all"
-            >
-              OPEN_QUEST
-            </Link>
-            {project.website ? (
-              <a
-                href={project.website}
-                target="_blank"
-                rel="noreferrer"
-                className="hover-bounce retro-border-4 bg-white px-5 py-3 text-sm font-black shadow-neo transition-all"
-              >
-                LIVE_DEMO
-              </a>
-            ) : null}
-          </div>
-        </div>
-      </div>
-    </article>
-  );
-}
+const featuredProjects = getFeaturedProjects();
 
 export default function HomePage() {
   const handleViewQuests = () => {
-    const section = document.getElementById("projects");
-
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    scrollToSection("projects");
   };
 
-  const emailSubject = encodeURIComponent("Portfolio Inquiry");
-  const emailBody = encodeURIComponent(
-    `Hello Ashitosh,
-
-I came across your portfolio and would like to connect regarding a potential opportunity/project.
-
-Here are a few details:
-- Name:
-- Company:
-- Project / Role:
-- Timeline:
-
-Looking forward to hearing from you.
-
-Best regards,`,
-  );
-  const gmailComposeLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${profile.contact.email}&su=${emailSubject}&body=${emailBody}`;
+  const gmailComposeLink = buildGmailComposeLink(profile.contact.email);
 
   return (
     <div className="homepage-no-select">
@@ -288,7 +146,16 @@ Best regards,`,
           </div>
           <div className="grid gap-12 md:grid-cols-2">
             {featuredProjects.map((project) => (
-              <QuestCard key={project.id} project={project} />
+              <ProjectCard
+                key={project.id}
+                project={project}
+                origin="home-projects"
+                primaryActionLabel="OPEN_QUEST"
+                secondaryActionLabel="LIVE_DEMO"
+                tagSource="technologies"
+                summaryMinHeightClass="min-h-[3rem]"
+                imageHeightClass="h-64"
+              />
             ))}
           </div>
         </div>
