@@ -88,6 +88,60 @@ function RouteEffects() {
   return null;
 }
 
+function CustomCursor() {
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [isVisible, setIsVisible] = useState(false);
+  const [isInteractive, setIsInteractive] = useState(false);
+
+  useEffect(() => {
+    const interactiveSelector =
+      "a, button, input, textarea, select, summary, [role='button'], label[for]";
+
+    const handleMouseMove = (event) => {
+      setPosition({ x: event.clientX, y: event.clientY });
+      setIsVisible(true);
+    };
+
+    const handleMouseLeave = () => setIsVisible(false);
+
+    const handleMouseOver = (event) => {
+      setIsInteractive(Boolean(event.target.closest(interactiveSelector)));
+    };
+
+    const handleMouseOut = (event) => {
+      if (!event.relatedTarget) {
+        setIsInteractive(false);
+        return;
+      }
+
+      setIsInteractive(Boolean(event.relatedTarget.closest(interactiveSelector)));
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseout", handleMouseLeave);
+    document.addEventListener("mouseover", handleMouseOver);
+    document.addEventListener("mouseout", handleMouseOut);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseout", handleMouseLeave);
+      document.removeEventListener("mouseover", handleMouseOver);
+      document.removeEventListener("mouseout", handleMouseOut);
+    };
+  }, []);
+
+  return (
+    <div
+      className={`custom-cursor ${isVisible ? "custom-cursor-visible" : ""} ${
+        isInteractive ? "custom-cursor-active" : ""
+      }`}
+      style={{
+        transform: `translate(${position.x}px, ${position.y}px) translate(-50%, -50%)`,
+      }}
+    />
+  );
+}
+
 function SiteHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const navigate = useNavigate();
@@ -219,6 +273,7 @@ function SiteFooter() {
 function AppShell() {
   return (
     <div className="pixel-grid min-h-screen overflow-x-hidden bg-background-grid text-slate-900 selection:bg-secondary selection:text-black">
+      <CustomCursor />
       <RouteEffects />
       <SiteHeader />
       <main>

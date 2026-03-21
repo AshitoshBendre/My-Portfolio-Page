@@ -26,7 +26,7 @@ function ProjectCard({ project }) {
             preview.type === "video" ? (
               <video
                 src={preview.url}
-                className="h-full w-full object-cover grayscale transition duration-300 group-hover:scale-105 group-hover:grayscale-0"
+                className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
                 autoPlay
                 muted
                 loop
@@ -36,7 +36,7 @@ function ProjectCard({ project }) {
               <img
                 src={preview.url}
                 alt={preview.caption || project.title}
-                className="h-full w-full object-cover grayscale transition duration-300 group-hover:scale-105 group-hover:grayscale-0"
+                className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
               />
             )
           ) : (

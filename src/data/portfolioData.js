@@ -1,4 +1,8 @@
 import arDemo from "../assets/ProjectAssets/ARDemo.mp4";
+import bounceGameLevelDemo from "../assets/ProjectAssets/Bounce Remake Media/Game Level Demo.mp4";
+import bounceGameScreenshot from "../assets/ProjectAssets/Bounce Remake Media/Game Screenshot 1.png";
+import bounceLevelDemo from "../assets/ProjectAssets/Bounce Remake Media/Level Demo.mp4";
+import bounceLevelFinish from "../assets/ProjectAssets/Bounce Remake Media/Level Finish.png";
 import cellIntro from "../assets/ProjectAssets/CSIntro.png";
 import cellLabel from "../assets/ProjectAssets/CSLabel.png";
 import portfolioImage from "../assets/ProjectAssets/Portfolio.png";
@@ -159,6 +163,72 @@ export const workExperiences = [
 ];
 
 export const projects = [
+  {
+    id: "bounce-remake",
+    title: "Bounce Remake",
+    questTitle: "BOUNCE REMAKE",
+    difficulty: "BOSS",
+    difficultyPercent: 94,
+    category: "Game Development",
+    type: "LEVEL_EDITOR_PLATFORMER",
+    summary:
+      "2D platformer and sandbox project with a full in-game level editor, save validation, and optimized loading workflows.",
+    description:
+      "Bounce Remake is a 2D platformer and sandbox experience built around a seamless in-game level editor. As a solo developer, I designed the project around scalable OOP architecture, modular systems, and memory-conscious runtime behavior so the project could support long-term expansion without becoming brittle.",
+    technologies: [
+      "Unity",
+      "C#",
+      "OOP",
+      "LDtk",
+      "Addressables",
+      "Event Bus",
+      "Singleton Pattern",
+      "StackyLogs",
+    ],
+    loot: ["UNITY", "LEVEL_EDITOR", "ADDRESSABLES", "OOP"],
+    architecture: [
+      "Theme-agnostic catalog system for placeable game items",
+      "Drag-and-drop editor UI populated dynamically from the active catalog",
+      "Metadata-driven save flow with lightweight references and heavy level data split through Addressables",
+    ],
+    challenges: [
+      "Moving platforms were losing reference points after reload and causing null reference exceptions",
+      "Editor interactions needed to stay responsive without runtime instantiation spikes",
+      "Saved levels needed validation before serialization so broken levels were never written as valid content",
+    ],
+    highlights: [
+      "Built the full project as a solo developer with a scalable OOP-first codebase",
+      "Created a modular catalog system ready for future DLC or seasonal content",
+      "Engineered pre-instantiation for editor highlight objects to reduce garbage collection spikes",
+      "Implemented object-specific context capabilities like link, duplicate, move, and delete",
+      "Validated level playability before serializing object data into JSON",
+      "Designed an IInjectable-based reconstruction flow to safely restore moving-platform dependencies on load",
+    ],
+    website:
+      "https://play.unity.com/en/games/1b4ceac5-dd44-45f0-b084-934fa9275bc7/bounce-remake",
+    media: [
+      {
+        type: "video",
+        url: bounceLevelDemo,
+        caption: "Level demo gameplay and editor flow",
+      },
+      {
+        type: "image",
+        url: bounceGameScreenshot,
+        caption: "Gameplay snapshot from Bounce Remake",
+      },
+      {
+        type: "video",
+        url: bounceGameLevelDemo,
+        caption: "Additional game level demo footage",
+      },
+      {
+        type: "image",
+        url: bounceLevelFinish,
+        caption: "Level completion screen",
+      },
+    ],
+  },
   {
     id: "stackylogs",
     title: "Stackylogs",
@@ -430,10 +500,10 @@ export const projects = [
 ];
 
 export const featuredProjectIds = [
+  "bounce-remake",
   "pocket-rocket",
   "stackylogs",
   "cell-simulation",
-  "ar-interior-design",
 ];
 
 export const categories = [
