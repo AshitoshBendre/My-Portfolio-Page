@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { getProjectById, projects } from "../data/portfolioData";
 
@@ -9,6 +10,25 @@ function formatTime(seconds) {
   const secs = Math.floor(seconds % 60);
 
   return `${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
+}
+
+function QuestMediaOverlay({ children, onClose }) {
+  if (typeof document === "undefined") return null;
+
+  return createPortal(
+    <div
+      className="fixed inset-0 z-[140] flex min-h-screen w-screen items-center justify-center bg-white/25 p-2 sm:p-4 backdrop-blur-sm"
+      onClick={onClose}
+    >
+      <div
+        className="w-full max-w-6xl"
+        onClick={(event) => event.stopPropagation()}
+      >
+        {children}
+      </div>
+    </div>,
+    document.body,
+  );
 }
 
 function QuestVideoPlayer({ src, caption }) {
@@ -139,7 +159,7 @@ function QuestVideoPlayer({ src, caption }) {
   return (
     <>
       <div className="space-y-3">
-        <div className="retro-border-4 overflow-hidden bg-black shadow-neo">
+        <div className="media-frame-accent retro-border-4 overflow-hidden bg-black shadow-neo">
           <div className="border-b-4 border-primary bg-black px-4 py-2 font-retro text-[11px] uppercase text-white">
             QUEST_REPLAY
           </div>
@@ -201,15 +221,9 @@ function QuestVideoPlayer({ src, caption }) {
       </div>
 
       {isExpanded ? (
-        <div
-          className="fixed inset-0 z-[120] flex items-center justify-center bg-black/85 p-4 backdrop-blur-sm"
-          onClick={closeExpanded}
-        >
-          <div
-            className="retro-border-8 w-full max-w-6xl overflow-hidden bg-white shadow-neo-blue"
-            onClick={(event) => event.stopPropagation()}
-          >
-            <div className="flex items-center justify-between border-b-8 border-black bg-white px-4 py-3">
+        <QuestMediaOverlay onClose={closeExpanded}>
+          <div className="retro-border-8 flex max-h-[calc(100vh-1rem)] w-full flex-col overflow-hidden bg-white shadow-neo-blue sm:max-h-[calc(100vh-2rem)]">
+            <div className="flex items-center justify-between gap-3 border-b-8 border-black bg-white px-3 py-3 sm:px-4">
               <span className="font-retro text-[11px] uppercase text-primary">
                 ENLARGED_QUEST_REPLAY
               </span>
@@ -222,12 +236,12 @@ function QuestVideoPlayer({ src, caption }) {
               </button>
             </div>
 
-            <div className="bg-[linear-gradient(180deg,#0f172a_0%,#000_100%)] p-4 md:p-6">
+            <div className="min-h-0 flex-1 overflow-auto bg-[linear-gradient(180deg,#0f172a_0%,#000_100%)] p-2 sm:p-4 md:p-6">
               <video
                 ref={expandedVideoRef}
                 src={src}
                 playsInline
-                className="max-h-[75vh] w-full bg-black object-contain"
+                className="mx-auto max-h-[calc(100vh-14rem)] w-full bg-black object-contain sm:max-h-[calc(100vh-16rem)]"
                 onPlay={() => setIsPlaying(true)}
                 onPause={() => setIsPlaying(false)}
                 onTimeUpdate={() => handleTimeUpdate("expanded")}
@@ -236,7 +250,7 @@ function QuestVideoPlayer({ src, caption }) {
               />
             </div>
 
-            <div className="border-t-8 border-black bg-white p-4 md:p-5">
+            <div className="border-t-8 border-black bg-white p-3 sm:p-4 md:p-5">
               <div className="flex flex-wrap items-center gap-3">
                 <button
                   type="button"
@@ -273,7 +287,100 @@ function QuestVideoPlayer({ src, caption }) {
               ) : null}
             </div>
           </div>
+        </QuestMediaOverlay>
+      ) : null}
+    </>
+  );
+}
+
+function QuestImagePreview({ src, caption, alt }) {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const closeExpanded = useCallback(() => {
+    setIsExpanded(false);
+  }, []);
+
+  useEffect(() => {
+    if (!isExpanded) return undefined;
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        closeExpanded();
+      }
+    };
+
+    document.body.classList.add("video-modal-open");
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.classList.remove("video-modal-open");
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [closeExpanded, isExpanded]);
+
+  return (
+    <>
+      <div className="space-y-2">
+        <div className="media-frame-accent retro-border-4 overflow-hidden bg-black shadow-neo">
+          <div className="flex items-center justify-between gap-3 border-b-4 border-accent-blue bg-black px-4 py-2">
+            <span className="font-retro text-[11px] uppercase text-white">
+              QUEST_CAPTURE
+            </span>
+            <button
+              type="button"
+              onClick={() => setIsExpanded(true)}
+              className="hover-bounce retro-border-4 bg-accent-blue px-3 py-1 font-retro text-[11px] uppercase text-white shadow-neo transition-all"
+            >
+              EXPAND
+            </button>
+          </div>
+          <button
+            type="button"
+            onClick={() => setIsExpanded(true)}
+            className="block w-full bg-black"
+            aria-label={`Open enlarged preview for ${alt}`}
+          >
+            <img src={src} alt={alt} className="aspect-video w-full object-cover" />
+          </button>
         </div>
+        {caption ? (
+          <p className="font-retro text-[11px] uppercase text-slate-600">{caption}</p>
+        ) : null}
+      </div>
+
+      {isExpanded ? (
+        <QuestMediaOverlay onClose={closeExpanded}>
+          <div className="retro-border-8 flex max-h-[calc(100vh-1rem)] w-full flex-col overflow-hidden bg-white shadow-neo-blue sm:max-h-[calc(100vh-2rem)]">
+            <div className="flex items-center justify-between gap-3 border-b-8 border-black bg-white px-3 py-3 sm:px-4">
+              <span className="font-retro text-[11px] uppercase text-accent-blue">
+                ENLARGED_QUEST_CAPTURE
+              </span>
+              <button
+                type="button"
+                onClick={closeExpanded}
+                className="hover-bounce retro-border-4 bg-primary px-4 py-2 font-retro text-[11px] uppercase text-white shadow-neo transition-all"
+              >
+                CLOSE
+              </button>
+            </div>
+
+            <div className="min-h-0 flex-1 overflow-auto bg-[linear-gradient(180deg,#f8fafc_0%,#e2e8f0_100%)] p-2 sm:p-4 md:p-6">
+              <img
+                src={src}
+                alt={alt}
+                className="mx-auto max-h-[calc(100vh-12rem)] w-full object-contain sm:max-h-[calc(100vh-14rem)]"
+              />
+            </div>
+
+            {caption ? (
+              <div className="border-t-8 border-black bg-white p-3 sm:p-4 md:p-5">
+                <p className="font-retro text-[11px] uppercase text-slate-600">
+                  {caption}
+                </p>
+              </div>
+            ) : null}
+          </div>
+        </QuestMediaOverlay>
       ) : null}
     </>
   );
@@ -297,23 +404,11 @@ function MediaPanel({ project }) {
           {item.type === "video" ? (
             <QuestVideoPlayer src={item.url} caption={item.caption} />
           ) : (
-            <>
-              <div className="retro-border-4 overflow-hidden bg-black shadow-neo">
-                <div className="border-b-4 border-accent-blue bg-black px-4 py-2 font-retro text-[11px] uppercase text-white">
-                  QUEST_CAPTURE
-                </div>
-                <img
-                  src={item.url}
-                  alt={item.caption || project.title}
-                  className="aspect-video w-full object-cover"
-                />
-              </div>
-              {item.caption ? (
-                <p className="font-retro text-[11px] uppercase text-slate-600">
-                  {item.caption}
-                </p>
-              ) : null}
-            </>
+            <QuestImagePreview
+              src={item.url}
+              alt={item.caption || project.title}
+              caption={item.caption}
+            />
           )}
         </div>
       ))}

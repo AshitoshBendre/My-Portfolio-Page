@@ -20,7 +20,9 @@ function SectionTitle({
 }) {
   return (
     <div className={centered ? "text-center" : ""}>
-      <h2 className={`text-3xl uppercase tracking-tight md:text-5xl ${titleClassName}`}>
+      <h2
+        className={`text-3xl uppercase tracking-tight md:text-5xl ${titleClassName}`}
+      >
         {title}
       </h2>
       {subtitle ? (
@@ -158,7 +160,7 @@ Best regards,`,
   const gmailComposeLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${profile.contact.email}&su=${emailSubject}&body=${emailBody}`;
 
   return (
-    <>
+    <div className="homepage-no-select">
       <section className="relative overflow-hidden px-6 py-20 md:py-28">
         <div className="floating absolute left-8 top-20 hidden size-16 bg-primary opacity-20 retro-border-4 lg:block" />
         <div
@@ -184,7 +186,9 @@ Best regards,`,
               <div className="space-y-5">
                 <h1 className="text-4xl uppercase italic leading-none md:text-7xl">
                   {profile.name.split(" ")[0]}{" "}
-                  <span className="text-primary">{profile.name.split(" ")[1]}</span>
+                  <span className="text-primary">
+                    {profile.name.split(" ")[1]}
+                  </span>
                 </h1>
                 <div className="flex items-center gap-4">
                   <div className="h-10 w-4 bg-primary" />
@@ -218,7 +222,10 @@ Best regards,`,
         </div>
       </section>
 
-      <section id="about" className="border-y-8 border-black bg-white px-6 py-24">
+      <section
+        id="about"
+        className="border-y-8 border-black bg-white px-6 py-24"
+      >
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-12 lg:items-center">
           <div className="relative lg:col-span-5">
             <div className="retro-border-8 group bg-accent-blue p-2 shadow-neo-lg">
@@ -236,7 +243,10 @@ Best regards,`,
                 <span className="text-secondary">MP: {profile.stats.mp}</span>
               </div>
               <div className="retro-border-4 h-4 overflow-hidden bg-gray-800">
-                <div className="hp-bar-fill h-full bg-primary" style={{ width: "100%" }} />
+                <div
+                  className="hp-bar-fill h-full bg-primary"
+                  style={{ width: "100%" }}
+                />
               </div>
             </div>
           </div>
@@ -246,7 +256,10 @@ Best regards,`,
             <div className="retro-border-8 relative bg-background-grid p-8 shadow-neo">
               <div className="space-y-6">
                 {profile.intro.map((paragraph) => (
-                  <p key={paragraph} className="text-xl font-bold leading-relaxed text-slate-800">
+                  <p
+                    key={paragraph}
+                    className="text-xl font-bold leading-relaxed text-slate-800"
+                  >
                     {paragraph}
                   </p>
                 ))}
@@ -262,7 +275,10 @@ Best regards,`,
       <section id="projects" className="px-6 py-24">
         <div className="mx-auto max-w-7xl">
           <div className="mb-16 flex flex-col gap-4 md:flex-row md:items-baseline md:justify-between">
-            <SectionTitle title="FEATURED QUESTS" subtitle="Portfolio highlights" />
+            <SectionTitle
+              title="FEATURED QUESTS"
+              subtitle="Portfolio highlights"
+            />
             <Link
               to="/projects"
               className="font-retro text-[11px] uppercase text-primary underline decoration-4 underline-offset-4"
@@ -278,7 +294,10 @@ Best regards,`,
         </div>
       </section>
 
-      <section id="abilities" className="border-y-8 border-black bg-secondary px-6 py-24">
+      <section
+        id="abilities"
+        className="border-y-8 border-black bg-secondary px-6 py-24"
+      >
         <div className="mx-auto max-w-7xl">
           <SectionTitle
             title="ABILITIES_MENU"
@@ -344,7 +363,9 @@ Best regards,`,
                         <span className="font-retro text-[11px] uppercase text-primary">
                           {item.badge}
                         </span>
-                        <h3 className="mt-3 text-2xl uppercase">{item.title}</h3>
+                        <h3 className="mt-3 text-2xl uppercase">
+                          {item.title}
+                        </h3>
                         <p className="mt-2 text-base font-black uppercase text-slate-600">
                           {item.subtitle}
                         </p>
@@ -354,7 +375,10 @@ Best regards,`,
                           </h4>
                           <ul className="mt-3 grid gap-2 text-base font-bold md:grid-cols-2">
                             {item.skills.map((skill) => (
-                              <li key={skill} className="flex items-center gap-2">
+                              <li
+                                key={skill}
+                                className="flex items-center gap-2"
+                              >
                                 <span className="text-primary">*</span>
                                 <span>{skill}</span>
                               </li>
@@ -433,6 +457,6 @@ Best regards,`,
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

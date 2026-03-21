@@ -16,12 +16,12 @@ const config = {
         "mono-one": ["'Rubik Mono One'", "sans-serif"],
       },
       boxShadow: {
-        neo: "6px 6px 0px 0px #000000",
-        "neo-lg": "12px 12px 0px 0px #000000",
-        "neo-red": "6px 6px 0px 0px #e60012",
-        "neo-blue": "12px 12px 0px 0px #3B82F6",
-        "neo-yellow": "12px 12px 0px 0px #FFD700",
-        "mini-neo": "2px 2px 0px 0px #000000",
+        neo: "6px 6px 0px 0px rgba(15, 23, 42, 0.55)",
+        "neo-lg": "12px 12px 0px 0px rgba(15, 23, 42, 0.42)",
+        "neo-red": "6px 6px 0px 0px rgba(230, 0, 18, 0.42)",
+        "neo-blue": "12px 12px 0px 0px rgba(59, 130, 246, 0.36)",
+        "neo-yellow": "12px 12px 0px 0px rgba(255, 215, 0, 0.45)",
+        "mini-neo": "2px 2px 0px 0px rgba(15, 23, 42, 0.55)",
       },
       borderRadius: {
         none: "0px",
