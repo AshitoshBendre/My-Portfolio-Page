@@ -11,6 +11,10 @@ import pocketRocketWebsite from "../assets/ProjectAssets/PRWebsite.png";
 import sanskritDoc from "../assets/ProjectAssets/SEA-Gameplay Design Doc.png";
 import stackyLogsImage from "../assets/ProjectAssets/StackyLogs.png";
 import stackyLogsVideo from "../assets/ProjectAssets/StackyLogsTestVideo.mp4";
+import waypointMainVideo from "../assets/ProjectAssets/Waypoint System/MainVideo, Shows How My Algorithm Works.mp4";
+import waypointBakeNetworkVideo from "../assets/ProjectAssets/Waypoint System/3.VideoDemostrationofBakeNetworks.mp4";
+import waypointNavMeshOffImage from "../assets/ProjectAssets/Waypoint System/1.PhotoWIthNavMeshGizmoOff.png";
+import waypointNavMeshOnImage from "../assets/ProjectAssets/Waypoint System/2.PhotoWIthNavMeshGizmoOn.png";
 
 export const profile = {
   name: "Ashitosh Bendre",
@@ -163,6 +167,70 @@ export const workExperiences = [
 ];
 
 export const projects = [
+  {
+    id: "procedural-path-relaxation-engine",
+    title: "Procedural Path Relaxation Engine",
+    questTitle: "PATH RELAXATION ENGINE",
+    difficulty: "BOSS",
+    difficultyPercent: 97,
+    category: "Development Tools",
+    type: "AI_NAVIGATION_TOOLING",
+    summary:
+      "Custom idle-game navigation pipeline that converts rigid NavMesh routes into smooth, safe, human-like spline paths.",
+    description:
+      "The Procedural Path Relaxation Engine is a custom navigation layer built for idle mart gameplay, sitting between raw NavMesh pathfinding and the NPC movement motor. It intercepts mathematically shortest-path data, then transforms it through a multi-stage relaxation pipeline so characters move with believable momentum, safe turn radii, and consistent waypoint density instead of robotic corner cutting.",
+    technologies: [
+      "Unity",
+      "C#",
+      "NavMesh",
+      "Spline Processing",
+      "Runtime Tooling",
+      "Editor Tooling",
+      "Serialization",
+      "Data-Driven AI",
+    ],
+    loot: ["NAVMESH", "AI_TOOLING", "SPLINES", "BAKED_DATA"],
+    architecture: [
+      "Intermediary path-processing layer between NavMesh path output and the NPC movement motor",
+      "Multi-stage relaxation pipeline covering pushback, curve generation, step normalization, and final smoothing",
+      "Data-driven serialization flow so finalized routes can be baked once and reused by many NPCs with minimal CPU cost",
+    ],
+    challenges: [
+      "Standard shortest-path output produced robotic corners, wall hugging, and inconsistent waypoint density",
+      "NPC motors became harder to maintain because they had to constantly compensate for irregular path data",
+      "The tool needed to support both pre-baked static routes and runtime recalculation when the environment changes",
+    ],
+    highlights: [
+      "Built geometric pushback logic to buffer sharp turns away from walls and obstacles",
+      "Rebuilt rigid line segments into organic curves for natural-looking movement through tight spaces",
+      "Normalized waypoint spacing so movement motors receive uniform, predictable traversal data",
+      "Added an iterative tension-release smoothing pass to remove micro-kinks from the final path",
+      "Supported both editor baking and runtime generation for dynamic idle-mart layouts",
+      "Serialized finalized path data so large numbers of NPCs can share complex routes with almost no runtime overhead",
+    ],
+    media: [
+      {
+        type: "video",
+        url: waypointMainVideo,
+        caption: "Main showcase of the path relaxation algorithm in motion",
+      },
+      {
+        type: "image",
+        url: waypointNavMeshOffImage,
+        caption: "Relaxed route visualization without NavMesh gizmos",
+      },
+      {
+        type: "image",
+        url: waypointNavMeshOnImage,
+        caption: "Route visualization with NavMesh gizmos enabled",
+      },
+      {
+        type: "video",
+        url: waypointBakeNetworkVideo,
+        caption: "Bake network generation workflow and debug output",
+      },
+    ],
+  },
   {
     id: "bounce-remake",
     title: "Bounce Remake",
@@ -500,6 +568,7 @@ export const projects = [
 ];
 
 export const featuredProjectIds = [
+  "procedural-path-relaxation-engine",
   "bounce-remake",
   "pocket-rocket",
   "stackylogs",
